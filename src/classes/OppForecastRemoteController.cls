@@ -1,8 +1,6 @@
 /*****************************************************************************
  * Description : This is a global controller leveraged by Visual Force Page/Component for Opportunity Forecaset management
  *				
- * Author      : Fred Dai (Perficient)
- * Date        : 11/18/2014
  * Version     : 1.0
  *
  * Version History : 
