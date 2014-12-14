@@ -1,0 +1,113 @@
+<apex:page showHeader="false" cache="false" sidebar="false" standardStylesheets="false" standardController="OpportunityForecast__c" extensions="OppForecastController">
+<header>
+	<apex:stylesheet value="{!URLFOR($Resource.JqueryUI_1_11_2, 'jquery-ui-1.11.2/jquery-ui.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.bootstrap_3_3_1, 'dist/css/bootstrap.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.paramquery_2_3, 'pqgrid.min.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.paramquery_2_3, 'themes/Office/pqgrid.css')}" />
+    <apex:stylesheet value="{!$Resource.OppForecastCSS}" />
+    <style type="text/css">
+    	.pq-grid-row{
+			height:0px;
+		}
+    </style>
+</header>
+<body>
+<input type="hidden" id="userSessionId" value="{!$Api.Session_ID}" />
+
+<!-- select month and year -->
+<div class="left ml100">
+<h3><span class="label label-info">Please Select Month And Year</span></h3>
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+    Months   <span class="selection" id="month">Dec</span><span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Jan</a></li>
+    <li><a href="#">Feb</a></li>
+    <li><a href="#">Mar</a></li>
+    <li><a href="#">Apr</a></li>
+    <li><a href="#">May</a></li>
+    <li><a href="#">Jun</a></li>
+    <li><a href="#">Jul</a></li>
+    <li><a href="#">Aug</a></li>
+    <li><a href="#">Sep</a></li>
+    <li><a href="#">Oct</a></li>
+    <li><a href="#">Nov</a></li>
+    <li><a href="#">Dec</a></li>
+  </ul>
+</div>
+
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+    Year   <span class="selection" id="year">2014</span><span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">2014</a></li>
+    <li><a href="#">2015</a></li>
+    <li><a href="#">2016</a></li>
+  </ul>
+</div>
+</div>
+<!-- select opportunity -->
+<div class="left">
+<h3><span class="label label-info">Please Select Opportunity Name</span></h3>
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+    Opportunity Name <span class="selection" id="opportunity" value="006L0000005w7nb">OppAple</span><span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#" value="006L0000005w7nb">OppApple</a></li>
+    <li><a href="#" value="006L0000005w7nl">OppGoogle</a></li>
+    <li><a href="#" value="006L0000005w7ng">OppAlipay</a></li>
+    <li><a href="#" value="006L0000005XOCm">ABC_DA14580-01AT2</a></li>
+  </ul>
+</div>
+</div>
+<!-- select group column name -->
+<div class="left">
+<h3><span class="label label-info">Please Select Group Column</span></h3>
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+    Group Column <span class="selection" id="groupColumnName" value="EndCustomerAccountId__r.Name">End Customer</span><span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#" value=" ">No Group</a></li>
+    <li><a href="#" value="EndCustomerAccountId__r.Name">End Customer</a></li>
+    <li><a href="#" value="Market_Segment__c">Market Segment</a></li>
+    <li><a href="#" value="Project__c">Project Name</a></li>
+    <li><a href="#" value="Product2__r.Name">Product</a></li>
+    <li><a href="#" value="ContractManufacturerAccountId__r.Name">Contract Manufacturer</a></li>
+    <li><a href="#" value="DistributorAccountId__r.Name">Distributor</a></li>
+  </ul>
+</div>
+</div>
+<div style="clear:both"></div>
+<br/>
+<div><input type="button" class="btn btn-success ml100" value="Refresh" id="refresh" />  
+     <input type="button" class="btn btn-danger" value="Mass Save" id="massSave" /></div>
+
+<center>
+<div id="loading">
+	<apex:image value="{!$Resource.loading}"/>
+</div>
+</center>
+<div class="btn-group ml100" data-toggle="buttons" id="grid_column"></div>
+<div id="grid_json_paste" style="float:left;"></div>
+<div style="clear:both;"></div>
+<div id="grid_json" style="margin:auto;"></div>
+
+     <!--ParamQuery Grid files-->
+ 	 <apex:includeScript value="{!$Resource.Jquery_1_11_1_js}"/>
+	 <apex:includeScript value="{!URLFOR($Resource.JqueryUI_1_11_2, 'jquery-ui-1.11.2/jquery-ui.js')}"/>
+	 <!--
+	 <apex:includeScript value="{!URLFOR($Resource.paramquery_2_3, 'pqgrid.min.js')}"/>
+	 -->
+	 <apex:includeScript value="{!URLFOR($Resource.bootstrap_3_3_1, 'dist/js/bootstrap.js')}" />
+
+	 <!--<apex:includeScript value="{!URLFOR($Resource.paramquery_2_3, 'pqgrid.min.js')}" />-->
+     <!--<apex:includeScript value="{!$Resource.pqgridjs}"/>-->
+     
+     <apex:includeScript value="{!$Resource.paramqueryjs}"/>
+     <c:OppForecastSearch />
+</body>
+</apex:page>

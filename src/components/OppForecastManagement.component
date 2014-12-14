@@ -1,0 +1,3 @@
+<apex:component layout="none" selfClosing="true" controller="OppForecastRemoteController">
+	<apex:includeScript value="{!$Resource.OppForecastJSController}"/>
+</apex:component>
